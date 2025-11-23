@@ -1,40 +1,79 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
+    <title>BarberSys | Agendamento Online</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" id="display" disabled placeholder="0">
-        <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="deleteLast()">⌫</button>
-            <button onclick="appendOperator('%')">%</button>
-            <button onclick="appendOperator('/')">÷</button>
+    <header>
+        <div class="logo">BARBER<span class="highlight">SYS</span></div>
+        <nav>
+            <a href="#agendamento">Agendar</a>
+            <a href="#contato">Contato</a>
+            <a href="#" id="admin-login">Área do Barbeiro</a>
+        </nav>
+    </header>
 
-            <button onclick="appendNumber('7')">7</button>
-            <button onclick="appendNumber('8')">8</button>
-            <button onclick="appendNumber('9')">9</button>
-            <button onclick="appendOperator('*')">×</button>
+    <main id="agendamento" class="container">
+        <h1>Seu Agendamento Profissional</h1>
+        <p class="subtitle">Escolha o barbeiro, o serviço e a melhor data para você.</p>
+        
+        <section id="scheduling-steps">
+            <div class="step active" id="step-1">
+                <h2>1. Escolha seu Barbeiro</h2>
+                <div class="barber-selection-grid" id="barber-list">
+                    </div>
+            </div>
 
-            <button onclick="appendNumber('4')">4</button>
-            <button onclick="appendNumber('5')">5</button>
-            <button onclick="appendNumber('6')">6</button>
-            <button onclick="appendOperator('-')">−</button>
+            <div class="step" id="step-2">
+                <h2>2. Escolha o Serviço</h2>
+                <div class="service-list" id="service-list">
+                    </div>
+                <button class="btn back-btn" data-step="1">Anterior</button>
+            </div>
 
-            <button onclick="appendNumber('1')">1</button>
-            <button onclick="appendNumber('2')">2</button>
-            <button onclick="appendNumber('3')">3</button>
-            <button onclick="appendOperator('+')">+</button>
+            <div class="step" id="step-3">
+                <h2>3. Data e Horário</h2>
+                <div class="calendar-container" id="calendar">
+                    </div>
+                <div class="time-slots-container">
+                    <h3>Horários Disponíveis (<span id="selected-date-display">Selecione uma data</span>)</h3>
+                    <div class="time-slots" id="time-slots">
+                        </div>
+                </div>
+                <button class="btn back-btn" data-step="2">Anterior</button>
+            </div>
 
-            <button onclick="appendNumber('0')">0</button>
-            <button onclick="appendNumber('.')">.</button>
-            <button class="equal" onclick="calculateResult()">=</button>
+            <div class="step" id="step-4">
+                <h2>4. Confirmação</h2>
+                <form id="confirmation-form">
+                    <div id="summary-details">Resumo do Agendamento...</div>
+                    <input type="text" id="client-name" placeholder="Seu Nome Completo" required>
+                    <input type="email" id="client-email" placeholder="Seu E-mail" required>
+                    <input type="tel" id="client-phone" placeholder="Seu WhatsApp (99) 99999-9999" required>
+                    <button type="submit" class="btn primary-btn">CONFIRMAR AGENDAMENTO</button>
+                </form>
+                <button class="btn back-btn" data-step="3">Anterior</button>
+            </div>
+        </section>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-message"></p>
+                <button class="btn primary-btn" id="modal-ok">OK</button>
+            </div>
         </div>
-    </div>
+
+    </main>
+    
+    <footer>
+        &copy; 2024 BarberSys | Projeto Integrador - Programação WEB
+    </footer>
 
     <script src="script.js"></script>
 </body>

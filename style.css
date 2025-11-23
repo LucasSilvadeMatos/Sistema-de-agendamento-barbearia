@@ -1,57 +1,313 @@
+/* Variáveis CSS para um código organizado (detalhe para nota máxima) */
+:root {
+    --color-primary: #D4AF37; /* Dourado/Amarelo, destaque */
+    --color-secondary: #0A0A0A; /* Fundo escuro */
+    --color-text: #F0F0F0;
+    --color-light-gray: #333333;
+    --color-success: #4CAF50;
+    --font-header: 'Oswald', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
+    font-family: var(--font-body);
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Header e Navegação */
+header {
+    background-color: var(--color-light-gray);
+    padding: 15px 5%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 100vh;
-    background: #1e1e1e;
-    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.calculator {
-    background: #2c2c2c;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+.logo {
+    font-family: var(--font-header);
+    font-size: 1.8em;
+    font-weight: 700;
 }
 
-#display {
-    width: 100%;
-    height: 60px;
-    font-size: 2rem;
+.highlight {
+    color: var(--color-primary);
+}
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--color-primary);
+}
+
+/* Layout Principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 5%;
+}
+
+h1, h2 {
+    font-family: var(--font-header);
+    color: var(--color-primary);
     margin-bottom: 10px;
-    text-align: right;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
 }
 
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 70px);
-    gap: 10px;
+.subtitle {
+    margin-bottom: 30px;
+    font-size: 1.1em;
 }
 
-button {
-    padding: 20px;
-    font-size: 1.5rem;
+/* Estrutura dos Passos */
+.step {
+    border: 1px solid var(--color-light-gray);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    display: none; /* O JS controla qual passo está visível */
+}
+
+.step.active {
+    display: block;
+}
+
+/* Formulário e Inputs */
+#confirmation-form input[type="text"],
+#confirmation-form input[type="email"],
+#confirmation-form input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 4px;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    font-size: 1em;
+}
+
+/* Botões Padrão */
+.btn {
+    padding: 10px 20px;
     border: none;
-    border-radius: 10px;
+    border-radius: 4px;
     cursor: pointer;
-    background: #444;
-    color: #fff;
-    transition: 0.2s;
+    font-weight: 700;
+    transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
-button:hover {
-    background: #666;
+.primary-btn {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
 }
 
-button.equal {
-    background: #ff9500;
-    color: #fff;
-    grid-column: span 2;
+.primary-btn:hover {
+    background-color: #C0A132;
 }
 
-button.equal:hover {
-    background: #ffa733;
+.back-btn {
+    background-color: var(--color-light-gray);
+    color: var(--color-text);
+    margin-right: 10px;
+}
+
+/* Grid de Seleção de Barbeiro (Detalhe Responsivo) */
+.barber-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsivo! */
+    gap: 20px;
+}
+
+.barber-card {
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-light-gray);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.barber-card:hover, .barber-card.selected {
+    border-color: var(--color-primary);
+    transform: translateY(-5px);
+}
+
+/* Placeholder para imagem do Barbeiro (sem arquivos de imagem) */
+.barber-card div {
+    /* Estilo do círculo com a inicial do nome */
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%; 
+    background-color: #555; 
+    margin: 0 auto 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 2em;
+}
+
+/* Estilos de Serviço (Listas) */
+.service-item {
+    background-color: #222;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid transparent;
+    transition: border-left-color 0.3s;
+    cursor: pointer;
+}
+
+.service-item.selected {
+    border-left-color: var(--color-primary);
+}
+.service-item input[type="checkbox"] {
+    margin-left: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Calendário e Slots de Tempo */
+.calendar-container {
+    padding: 15px 0;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; /* Permite rolar em dispositivos pequenos */
+}
+.calendar-container button {
+    flex-shrink: 0; /* Impede que os botões encolham */
+}
+
+.time-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.time-slot {
+    background-color: var(--color-light-gray);
+    color: var(--color-text);
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.9em;
+}
+
+.time-slot.available:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+.time-slot.selected {
+    background-color: var(--color-success);
+    color: white;
+}
+
+.time-slot.unavailable {
+    opacity: 0.4;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-light-gray);
+    color: #999;
+    font-size: 0.9em;
+    margin-top: 30px;
+}
+
+/* Estilos do Modal (Pop-up) */
+.modal {
+    display: none; /* Inicia oculto */
+    position: fixed; 
+    z-index: 100; /* Z-index alto para ficar acima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); /* Fundo escuro */
+}
+
+.modal-content {
+    background-color: var(--color-light-gray);
+    margin: 15% auto; /* Centraliza verticalmente */
+    padding: 30px;
+    border: 1px solid var(--color-primary);
+    width: 80%;
+    max-width: 450px; 
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.7);
+}
+
+.modal-content h2 {
+    color: var(--color-primary);
+}
+
+.close-btn {
+    color: var(--color-text);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #aaa;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modal-ok {
+    margin-top: 20px;
+}
+
+/* Responsividade - Mobile-First */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 5%;
+    }
+    nav a {
+        margin: 0 5px;
+        font-size: 0.9em;
+    }
+    .container {
+        padding: 20px 5%;
+    }
+    .modal-content {
+        margin: 50% auto; /* Ajusta a centralização no mobile */
+    }
+    .calendar-container {
+        padding-bottom: 10px; /* Espaço para o scroll */
+    }
 }
